@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,22 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AuthComponent } from './auth/auth.component';
+import { RouterModule } from '@angular/router';
+const authRouting: ModuleWithProviders = RouterModule.forChild([
+  {
+    path: 'login',
+    component: AuthComponent
+  },
+  {
+    path: 'register',
+    component: AuthComponent
+  }
+]);
+
+
 
 @NgModule({
   declarations: [
@@ -22,13 +39,28 @@ import { FavoriteComponent } from './favorite/favorite.component';
     LoginComponent,
     RegisterComponent,
     SecondPageComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    authRouting,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(config),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export class AuthModule {}
+
+var config = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  databaseURL: "YOUR_DATABASE_URL",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID"
+};
