@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  categories: any;
+  message: any;
+  hasData: any;
+  filterData: any;
 
-  constructor() { }
+  
+
+  constructor(private containsData:DataService) { }
 
   ngOnInit() {
+    const userId = '2222';
+    this.containsData.requestPermission(userId);
+    this.containsData.receiveMessage();
+    this.message = this.containsData.currentMessage;
+    this.filterData= this.containsData.getData().subscribe(data =>{
+      console.log('data  ', data);
+      this.hasData = data
+      console.log(this.hasData);
+    });
+    console.log('hi');
   }
+
+
+
 
 }
