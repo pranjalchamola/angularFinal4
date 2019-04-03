@@ -1,5 +1,4 @@
 .cards{
-    border: 2px solid black;
     width: 100%;
     align-self: center;
     margin-top: 20px;
@@ -65,3 +64,8 @@
   0%   { transform: scale(30); }
   100% { transform: scale(1); }
 }
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+  }

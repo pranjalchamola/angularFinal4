@@ -16,8 +16,10 @@
             (click)="onClick(arr?.id)"><b>{{arr?.name}}</b> </a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active">
+
+        <!-- <li class="nav-item ">
+          <a class="nav-link " routerLink="/login"
+            routerLinkActive="active" (click)="loginbtn">
             Login
           </a>
         </li>
@@ -25,19 +27,9 @@
           <a class="nav-link" routerLink="/register" routerLinkActive="active">
             Register
           </a>
-        </li>
+        </li> -->
+
       </ul>
     </div>
   </div>
 </nav>
-<!-- <li class="nav-item">
-  <a class="nav-link" routerLink="/login" routerLinkActive="active">
-    Sign in
-  </a>
-</li>
-
-<li class="nav-item">
-  <a class="nav-link" routerLink="/register" routerLinkActive="active">
-    Sign up
-  </a>
-</li> -->

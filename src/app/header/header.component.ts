@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
     this.containsData.CategoryPublish(id);
     
     }
-
+ 
 
 
 
