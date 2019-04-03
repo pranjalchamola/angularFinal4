@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { DataService } from '../data.service';
 
 @Component({
@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   message: any;
   hasData: any;
   filterData: any;
+  @Output() headings: EventEmitter<any>= new EventEmitter();
 
   
 
@@ -21,12 +22,18 @@ export class HeaderComponent implements OnInit {
     this.containsData.requestPermission(userId);
     this.containsData.receiveMessage();
     this.message = this.containsData.currentMessage;
-    this.filterData= this.containsData.getData().subscribe(data =>{
+    this.filterData = this.containsData.getData().subscribe(data =>{
       console.log('data  ', data);
       this.hasData = data
       console.log(this.hasData);
     });
     console.log('hi');
+  }
+
+  onClick($event){
+
+    this.headings.next(event);
+
   }
 
 

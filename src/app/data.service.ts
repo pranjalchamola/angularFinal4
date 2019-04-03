@@ -11,6 +11,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
+  map(arg0: (element: any) => void): any {
+    throw new Error("Method not implemented.");
+  }
   categories: any;
   data: any;
   currentMessage: any;

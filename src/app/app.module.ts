@@ -19,6 +19,9 @@ import { environment } from 'src/environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { Routes, RouterModule } from '@angular/router';
+
+
 
 @NgModule({
   declarations: [
