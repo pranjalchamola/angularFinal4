@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireMessaging } from '@angular/fire/messaging';
@@ -11,12 +11,22 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
+  hasData: any;
+  filternews: any[];
+  filterData2: any;
   map(arg0: (element: any) => void): any {
     throw new Error("Method not implemented.");
   }
   categories: any;
   data: any;
   currentMessage: any;
+
+
+
+  public category_subject = new Subject<any>();
+  // public category_subject_event = this.category_subject.asObservable();
+  
+
 
   constructor(
     private http: HttpClient,
@@ -36,6 +46,43 @@ export class DataService {
     return this.http.get("https://angularfinal-21.firebaseio.com/.json");
 
   }
+  getnews(){
+    this.getData().subscribe(data => {
+      console.log("data  ", data);
+
+      this.hasData = data
+      console.log(this.hasData);
+    });
+  }
+
+
+  
+
+  public CategoryPublish(id) {
+
+    this.filternews = [];
+    this.getData().subscribe(data => {
+      // console.log("data  ", data);
+      this.hasData = data
+      // console.log("from body", );
+      // tslint:disable-next-line: align
+      this.filterData2 = this.hasData['News'].map((news) => {
+        
+        if (news.catid == id) {
+          this.filternews.push(news)
+        }
+        // console.log("from map", this.filternews);
+        
+      });
+      this.category_subject.next(this.filternews); 
+    });
+    
+     
+  }
+
+
+
+
   /**
    * update token in firebase database
    * 

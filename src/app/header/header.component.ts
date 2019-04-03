@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { DataService } from '../data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,8 @@ export class HeaderComponent implements OnInit {
   message: any;
   hasData: any;
   filterData: any;
-  @Output() headings: EventEmitter<any>= new EventEmitter();
+  // @Output() 'headings': EventEmitter<any> = new EventEmitter();
+  catId: void;
 
   
 
@@ -30,11 +32,11 @@ export class HeaderComponent implements OnInit {
     console.log('hi');
   }
 
-  onClick($event){
-
-    this.headings.next(event);
-
-  }
+  onClick(id){
+    console.log(id);
+    this.containsData.CategoryPublish(id);
+    
+    }
 
 
 

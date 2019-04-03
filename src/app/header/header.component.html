@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav">
 
         <li *ngFor="let arr of hasData?.Category"><a role="menuitem" abindex="-1"
-            (click)="onClick(arr)"><b>{{arr?.name}}</b> </a></li>
+            (click)="onClick(arr?.id)"><b>{{arr?.name}}</b> </a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">

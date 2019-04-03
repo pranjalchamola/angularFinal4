@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../data.service';
 import { AppRoutingModule } from '../app-routing.module';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-main-body',
@@ -13,23 +14,29 @@ export class MainBodyComponent implements OnInit {
   dataFetched: boolean;
   filterData: any;
   hasData: any;
+  filternews: any[];
+  
+  filter: any;
+  filternews1: any;
 
-
-
-  constructor(private containsData: DataService, private router:Router) {}
+  constructor(private containsData: DataService, private router: Router) { }
 
   ngOnInit() {
-    this.filterData= this.containsData.getData().subscribe(data =>{
+    this.filterData = this.containsData.getData().subscribe(data => {
       console.log("data  ", data);
-      
+
       this.hasData = data
       console.log(this.hasData);
+      this.filternews1 = this.hasData.News;
     });
     console.log("hi");
 
+    this.containsData.category_subject.subscribe(data => { this.filternews1 = data });
+    
+    
   }
 
-  
+
   onSelect(arr) {
 
     this.filterData2 = this.router.navigate(['/app-secondpage', arr.id]);
@@ -45,6 +52,22 @@ export class MainBodyComponent implements OnInit {
       console.log(this.filterData2);
     });
     this.dataFetched = true;
+  }
+
+  afterFilter() {
+    this.filternews = [];
+    this.filterData = this.containsData.getData().subscribe(data => {
+      // console.log("data  ", data);
+      this.hasData = data
+      // console.log("from body", );
+      // tslint:disable-next-line: align
+      this.filterData2 = this.hasData['News'].map((news) => {
+        console.log("from map", news);
+        if (news.catid == this.filter) {
+          this.filternews.push(news)
+        }
+      });
+    });
   }
 
 
