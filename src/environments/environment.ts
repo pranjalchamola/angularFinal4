@@ -4,7 +4,7 @@
 
 // tslint:disable-next-line: one-variable-per-declaration
 export const environment = {
-  production: true,
+  production: false,
   firebase: {
     apiKey: "AIzaSyB_LoEO1EOCBVnvoIb7zKqhxv8LGWcdRlw",
     authDomain: "angularfinal-21.firebaseapp.com",
@@ -14,6 +14,7 @@ export const environment = {
     messagingSenderId: "617131777132"
   }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -5,6 +5,7 @@ import { AngularFireDatabaseModule} from 'angularfire2/database';
 import {HttpClientModule} from '@angular/common/http';
 
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -15,13 +16,23 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 import { FavoriteComponent } from './favorite/favorite.component';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
-import { Routes, RouterModule } from '@angular/router';
-
-
+import { RouterModule } from '@angular/router';
+import { AuthService } from './auth.service';
+import { ModuleWithProviders } from '@angular/core';
+const authRouting: ModuleWithProviders = RouterModule.forChild([
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  }
+]);
 
 @NgModule({
   declarations: [
@@ -33,7 +44,7 @@ import { Routes, RouterModule } from '@angular/router';
     LoginComponent,
     RegisterComponent,
     SecondPageComponent,
-    FavoriteComponent
+    FavoriteComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,8 +56,14 @@ import { Routes, RouterModule } from '@angular/router';
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 
+    FormsModule,
+    AngularFireAuthModule,
+    ReactiveFormsModule,
+    authRouting,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
