@@ -6,20 +6,43 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#" style="margin-top:0px;"><img style="margin-top:-15px;" class="newsimg"
+      <a class="navbar-brand" href="#" style="margin-top:0px;"><img style="margin-top:-15px;" class="newsimg img-responsive"
           src="../../assets/ourtn.JPG" alt="logo"></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
 
         <li *ngFor="let arr of hasData?.Category"><a role="menuitem" abindex="-1"
-            (click)="onClick(arr)"><b>{{arr?.name}}</b> </a></li>
+            (click)="onClick(arr?.id)"><b>{{arr?.name}}</b> </a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li> </li>
-        <li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active" *ngIf="login_check">
+            Login
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register" routerLinkActive="active" *ngIf="login_check">
+            Register
+          </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="/" routerLinkActive="active" *ngIf="!login_check" (click)="logout_session()">
+            Logout
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+<!-- <li class="nav-item">
+  <a class="nav-link" routerLink="/login" routerLinkActive="active">
+    Sign in
+  </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link" routerLink="/register" routerLinkActive="active">
+    Sign up
+  </a>
+</li> -->

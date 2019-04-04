@@ -1,26 +1,29 @@
+<app-header></app-header>
+<app-hero-image></app-hero-image>
 
-<div class="cards" *ngFor="let arr of filternews">
+<router-outlet></router-outlet>
+<br>
+<div class="cards" *ngFor="let arr of filternews1">
 
     <div class="row ">
       <div class="col-sm-4">
-  
-  
-        <img onmouseover="" style="cursor: pointer;" (click)="onSelect(arr)" (click)="onSelect(arr)" class="cardi"
-          src="{{arr?.image}}" alt="">
-        <hr>
+
+        <img (click)="onSelect(arr)" class="cardi img-responsive" src="{{arr?.image}}" alt="">
+
       </div>
-      <div class="col-sm-8">
-        <div onmouseover="" style="cursor: pointer;" (click)="onSelect(arr)"> <b> {{arr?.header}} </b>
+      <div class="col-sm-7">
+        <div (click)="onSelect(arr)"> <b> {{arr?.header}} </b>
         </div>
         <div class="like-content">
-          <button class="btn-secondary like-review">
-            <i class="fa fa-heart" aria-hidden="true"></i> Likes
-          </button>
-          <br>
-          <hr>
-  
-        </div>
-  
-  </div>
-  </div>
-  </div>
+         <button class="btn-secondary like-review" (click)="like(arr?.id)">
+            <i class="fa fa-heart" aria-hidden="true"></i> Like
+        </button>
+
+    </div>
+    </div>
+    </div>
+    <hr>
+</div>
+
+<app-footer></app-footer>
+

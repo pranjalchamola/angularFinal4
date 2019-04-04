@@ -1,9 +1,7 @@
 .cards{
-    
     width: 100%;
     align-self: center;
-    color: white;
-    background-color: #222930;
+    margin-top: 20px;
 
     
 
@@ -19,7 +17,7 @@
 }
 .cardi{
     width:300px;
-    height: 117px;
+    height: 100px;
 }
 .like-content {
     display: inline-block;
@@ -66,3 +64,8 @@
   0%   { transform: scale(30); }
   100% { transform: scale(1); }
 }
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
